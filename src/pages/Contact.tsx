@@ -1,6 +1,6 @@
 
-import Navigation from '../components/Navigation';
 import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import SiteLayout from '../components/SiteLayout';
 
 const Contact = () => {
   const contactChannels = [
@@ -35,71 +35,47 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950">
-      <Navigation />
+    <SiteLayout
+      command="contact"
+      heading="Contact Information"
+      description="If you are building something meaningful in ML, software, or product engineering, I would be happy to collaborate."
+    >
+      <p className="text-lg font-semibold text-slate-400">$ cat ~/contact/channels.json</p>
 
-      <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-14">
-            <h1 className="text-4xl font-bold text-white mb-3">Contact</h1>
-            <p className="text-base text-neutral-400 max-w-xl mx-auto">
-              I'm always open to discussing new opportunities, interesting
-              projects, and potential collaborations. Feel free to reach out
-              through any of the channels below.
-            </p>
-          </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {contactChannels.map((ch) => {
+          const Icon = ch.icon;
 
-          {/* Contact Cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {contactChannels.map((ch) => {
-              const Icon = ch.icon;
-              return (
-                <a
-                  key={ch.label}
-                  href={ch.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-neutral-900/80 border border-neutral-800 rounded-xl p-5 transition-all duration-300 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 block"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-neutral-800 border border-neutral-700 rounded-lg flex items-center justify-center shrink-0 group-hover:border-neutral-500 transition-colors">
-                      <Icon size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-neutral-500 uppercase tracking-wider font-medium mb-0.5">
-                        {ch.label}
-                      </p>
-                      <p className="text-white font-medium text-sm truncate group-hover:text-neutral-200 transition-colors">
-                        {ch.value}
-                      </p>
-                      <p className="text-xs text-neutral-500 mt-1">
-                        {ch.description}
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
+          return (
+            <a
+              key={ch.label}
+              href={ch.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group terminal-card block transition-all duration-200 hover:-translate-y-1 hover:border-emerald-400/70"
+            >
+              <div className="flex items-start gap-3">
+                <div className="rounded-md border border-emerald-500/40 bg-emerald-950/30 p-2.5 text-emerald-300 transition-colors group-hover:border-emerald-400/70 group-hover:bg-emerald-500/10">
+                  <Icon size={18} />
+                </div>
 
-          {/* Location */}
-          <div className="mt-10 text-center">
-            <div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6">
-              <p className="text-sm text-neutral-500 uppercase tracking-wider font-medium mb-1">
-                Location
-              </p>
-              <p className="text-white font-medium">
-                Titumir Hall, Polashi, BUET
-              </p>
-              <p className="text-neutral-500 text-sm mt-0.5">
-                Dhaka, Bangladesh
-              </p>
-            </div>
-          </div>
-        </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">{ch.label}</p>
+                  <p className="mt-1 text-sm font-semibold text-cyan-200">{ch.value}</p>
+                  <p className="mt-1 text-xs text-slate-400">{ch.description}</p>
+                </div>
+              </div>
+            </a>
+          );
+        })}
       </div>
-    </div>
+
+      <section className="terminal-card">
+        <p className="text-sm font-semibold text-slate-400">$ echo $LOCATION</p>
+        <p className="mt-2 text-lg font-bold text-cyan-200">Titumir Hall, Polashi, BUET</p>
+        <p className="text-sm text-slate-300">Dhaka, Bangladesh</p>
+      </section>
+    </SiteLayout>
   );
 };
 

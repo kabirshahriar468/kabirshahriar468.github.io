@@ -11,7 +11,7 @@ const SocialLinks = () => {
   ];
 
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
+    <div className="flex flex-wrap justify-start gap-3">
       {socialLinks.map((link) => {
         const IconComponent = link.icon;
         return (
@@ -20,10 +20,10 @@ const SocialLinks = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 bg-neutral-800/60 border border-neutral-700 rounded-lg text-neutral-400 hover:text-white hover:bg-neutral-700/60 hover:border-neutral-500 transition-all duration-200"
+            className="group inline-flex items-center gap-2 rounded-md border border-emerald-500/35 bg-slate-900/70 px-4 py-2 text-sm font-medium text-cyan-200 transition-all duration-200 hover:border-emerald-400/70 hover:bg-emerald-500/10 hover:text-emerald-300"
           >
-            <IconComponent size={18} />
-            <span className="text-sm font-medium">{link.label}</span>
+            <IconComponent size={16} className="text-emerald-300/90 transition-transform duration-200 group-hover:scale-110" />
+            <span>{link.label}</span>
           </a>
         );
       })}

@@ -1,91 +1,88 @@
 
-import Navigation from '../components/Navigation';
+import SiteLayout from '../components/SiteLayout';
 import SocialLinks from '../components/SocialLinks';
+
+const engineerInfo = [
+  ['Name', 'Shahriar Kabir'],
+  ['Based in', 'Dhaka, Bangladesh'],
+  ['Current Role', 'Final-year CSE student @ BUET'],
+  ['Availability', 'Open to internships, research, and freelance work'],
+];
+
+const education = [
+  {
+    title: 'Bangladesh University of Engineering and Technology',
+    degree: 'B.Sc. in Computer Science and Engineering',
+    period: 'Nov 2021 - Present',
+    location: 'Dhaka, Bangladesh',
+  },
+  {
+    title: 'Notre Dame College',
+    degree: 'Higher Secondary Certificate (Science) | GPA 5.00 / 5.00',
+    period: 'Completed 2020',
+    location: 'Dhaka, Bangladesh',
+  },
+];
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-neutral-950">
-      <Navigation />
-      
-      <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          {/* Profile Image */}
-          <div className="mb-10 text-center">
-            <div className="w-36 h-36 mx-auto rounded-full bg-gradient-to-br from-neutral-700 to-neutral-800 p-[2px]">
-              <div className="w-full h-full rounded-full bg-neutral-900 overflow-hidden">
-                <img 
-                  src="/profilepic.JPG" 
-                  alt="Shahriar Kabir" 
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
+    <SiteLayout
+      command="about"
+      heading="About Shahriar Kabir"
+      description="I focus on ML systems, full-stack engineering, and production-grade software, alongside research in AI, machine learning, computer vision, NLP, and large language models."
+    >
+      <div className="terminal-card animate-terminal-enter">
+        <div className="grid gap-8 md:grid-cols-[1.25fr_0.75fr] md:items-start">
+          <div>
+            <p className="mb-5 text-xl font-bold text-cyan-300">Engineer Information:</p>
+            <div className="space-y-3 text-base text-slate-200 sm:text-lg">
+              {engineerInfo.map(([label, value]) => (
+                <p key={label}>
+                  <span className="font-bold text-cyan-200">{label}:</span>{' '}
+                  <span className="text-slate-300">{value}</span>
+                </p>
+              ))}
             </div>
           </div>
 
-          {/* Introduction */}
-          <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Hi, I'm <span className="text-neutral-400">Shahriar Kabir</span>
-            </h1>
-            <p className="text-lg text-neutral-300 mb-2 font-medium">
-              Final-year CSE student at BUET
-            </p>
-            
-            <div className="w-12 h-px bg-neutral-700 mx-auto my-6" />
-
-            <p className="text-base text-neutral-400 mb-6 leading-relaxed max-w-2xl mx-auto">
-              My research interests include natural language processing, computer vision, machine learning,
-              and AI for health. I'm passionate about building robust, user-friendly applications
-              and solving complex problems with modern technologies.
-            </p>
-          </div>
-
-          {/* Social Links */}
-          <SocialLinks />
-
-          {/* Education Section */}
-          <div className="mt-20">
-            <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-              <span className="inline-block w-1 h-6 bg-neutral-500 rounded-full" />
-              Education
-            </h2>
-            
-            <div className="space-y-5">
-              {/* BUET */}
-              <div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 transition-all duration-300 hover:border-neutral-600">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">
-                      Bangladesh University of Engineering & Technology
-                    </h3>
-                    <p className="text-neutral-400 text-sm mb-1">B.Sc. in Computer Science & Engineering</p>
-                    <p className="text-neutral-500 text-sm">📍 Dhaka, Bangladesh</p>
-                  </div>
-                  <div className="text-neutral-500 text-sm mt-2 md:mt-0 shrink-0">
-                    Nov 2021 – Present
-                  </div>
-                </div>
-              </div>
-
-              {/* Notre Dame College */}
-              <div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 transition-all duration-300 hover:border-neutral-600">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Notre Dame College</h3>
-                    <p className="text-neutral-400 text-sm mb-1">Higher Secondary Certificate (Science)</p>
-                    <p className="text-white text-sm mb-1">GPA 5.00 / 5.00 · General Scholarship</p>
-                    <p className="text-neutral-500 text-sm">📍 Dhaka, Bangladesh</p>
-                  </div>
-                  <div className="text-neutral-500 text-sm mt-2 md:mt-0 shrink-0">
-                    Completed 2020
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-lg border border-emerald-500/45 bg-slate-900/80">
+            <img
+              src="/profilepic.JPG"
+              alt="Portrait of Shahriar Kabir"
+              className="h-full w-full object-cover object-[60%_center]"
+            />
           </div>
         </div>
       </div>
-    </div>
+
+      {/* <section className="rounded-lg border border-cyan-500/35 bg-cyan-950/10 p-6">
+        <p className="text-2xl font-bold leading-relaxed text-emerald-300 sm:text-3xl">
+          I build practical AI and software systems that connect research with real-world impact - from computer vision and NLP workflows to full-stack applications people can actually use.
+        </p>
+        <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-300 sm:text-lg">
+          As a final-year CSE student at BUET, I focus on machine learning, computer vision, and language technologies while building production-minded products. I care about correctness, performance, and a clean developer experience in every project.
+        </p>
+      </section> */}
+
+      <section>
+        <p className="mb-4 text-lg font-semibold text-slate-400">$ ls ~/links</p>
+        <SocialLinks />
+      </section>
+
+      <section>
+        <p className="mb-4 text-lg font-semibold text-slate-400">$ cat /etc/education</p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {education.map((item) => (
+            <article key={item.title} className="terminal-card">
+              <h2 className="text-lg font-bold text-cyan-200">{item.title}</h2>
+              <p className="mt-2 text-sm text-slate-200">{item.degree}</p>
+              <p className="mt-3 text-sm font-semibold text-emerald-300">{item.period}</p>
+              <p className="text-sm text-slate-400">{item.location}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </SiteLayout>
   );
 };
 

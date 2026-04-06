@@ -1,73 +1,74 @@
 
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Award, BookOpen, FolderOpen, House, Mail, Menu, Sparkles, X } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: 'About', path: '/' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Achievements', path: '/achievements' },
-    { name: 'Research', path: '/research' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'About', path: '/about', icon: House },
+    { name: 'Projects', path: '/projects', icon: FolderOpen },
+    { name: 'Achievements', path: '/achievements', icon: Award },
+    { name: 'Research', path: '/research', icon: BookOpen },
+    { name: 'Skills', path: '/skills', icon: Sparkles },
+    { name: 'Contact', path: '/contact', icon: Mail },
   ];
 
+  const isActive = (path: string) => {
+    if (path === '/about') {
+      return location.pathname === '/' || location.pathname === '/about';
+    }
+
+    return location.pathname.startsWith(path);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <Link to="/" className="text-xl font-bold text-white tracking-tight hover:text-neutral-300 transition-colors">
-            Shahriar Kabir
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-emerald-500/40 bg-slate-950/90 backdrop-blur-md">
+      <div className="terminal-shell">
+        <div className="flex items-center justify-between py-5">
+          <Link to="/" className="text-base font-bold text-cyan-300 transition-colors hover:text-emerald-300 sm:text-3xl">
+            &gt;. kabir@portfolio:~$
           </Link>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+
+          <div className="hidden items-center gap-2 md:flex">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`text-sm font-medium tracking-wide uppercase transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-white border-b-2 border-white'
-                    : 'text-neutral-400 hover:text-white'
-                } pb-1`}
-              >
-                {item.name}
+              <Link key={item.name} to={item.path} className={`group flex items-center gap-2 rounded-md px-3 py-2 text-base font-semibold transition-all duration-200 ${isActive(item.path) ? 'bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-400/50' : 'text-emerald-400/80 hover:bg-emerald-500/10 hover:text-emerald-300'}`}>
+                <item.icon size={15} className="shrink-0" />
+                <span>{item.name}</span>
               </Link>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-neutral-400 hover:text-white"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-            </svg>
+          <div className="hidden items-center gap-2 rounded-full border border-emerald-500/40 bg-slate-900/80 px-3 py-1.5 text-sm text-slate-300 md:flex">
+            <span className="h-2.5 w-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.95)]" />
+            <span>Available</span>
+          </div>
+
+          <button onClick={() => setIsOpen((open) => !open)} className="rounded-md border border-emerald-500/40 bg-slate-900/80 p-2 text-emerald-300 md:hidden" aria-label="Toggle navigation menu">
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 border-t border-neutral-800 pt-4">
+          <div className="space-y-2 border-t border-emerald-500/30 pb-4 pt-4 md:hidden">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`block py-2 text-sm font-medium uppercase tracking-wide transition-colors duration-200 ${
-                  location.pathname === item.path
-                    ? 'text-white'
-                    : 'text-neutral-400 hover:text-white'
-                }`}
+                className={`flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold transition-colors ${isActive(item.path) ? 'bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-400/50' : 'text-emerald-400/80 hover:bg-emerald-500/10 hover:text-emerald-300'}`}
               >
+                <item.icon size={15} />
                 {item.name}
               </Link>
             ))}
+
+            <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-emerald-500/40 bg-slate-900/80 px-3 py-1.5 text-xs text-slate-300">
+              <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.95)]" />
+              Available
+            </div>
           </div>
         )}
       </div>

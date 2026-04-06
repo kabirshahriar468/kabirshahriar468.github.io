@@ -1,11 +1,11 @@
 
-import Navigation from '../components/Navigation';
+import SiteLayout from '../components/SiteLayout';
 
 const Skills = () => {
   const skillCategories = [
     {
       title: 'Programming Languages',
-      skills: ['TypeScript', 'JavaScript', 'Python', 'C++', 'Java', 'Assembly', 'Shell Scripting', 'OpenGL'],
+      skills: ['TypeScript', 'JavaScript', 'Python', 'C++', 'Java'],
     },
     {
       title: 'Web Stack',
@@ -17,7 +17,7 @@ const Skills = () => {
     },
     {
       title: 'Databases',
-      skills: ['PostgreSQL', 'MongoDB', 'Oracle Database', 'Redis'],
+      skills: ['PostgreSQL', 'MongoDB', 'Oracle Database'],
     },
     {
       title: 'Tools & Technologies',
@@ -30,46 +30,31 @@ const Skills = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950">
-      <Navigation />
-      
-      <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-14">
-            <h1 className="text-4xl font-bold text-white mb-3">Skills</h1>
-            <p className="text-base text-neutral-400 max-w-2xl mx-auto">
-              Technologies and tools I work with to build modern applications and solve complex problems.
-            </p>
-          </div>
+    <SiteLayout
+      command="skills"
+      heading="Skills"
+      description="Core technologies and tools I use for software engineering, machine learning, and systems-focused work."
+    >
+      <p className="text-lg font-semibold text-slate-400">$ cat /etc/skills-proficiency</p>
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {skillCategories.map((category, index) => (
-              <div
-                key={index}
-                className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-5 transition-all duration-300 hover:border-neutral-600"
-              >
-                <h2 className="text-base font-semibold text-white mb-4 uppercase tracking-wide">
-                  {category.title}
-                </h2>
-                
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1.5 bg-neutral-800 border border-neutral-700/50 rounded-md text-sm text-neutral-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div className="grid gap-4 md:grid-cols-2">
+        {skillCategories.map((category) => (
+          <article key={category.title} className="terminal-card">
+            <h2 className="text-base font-bold uppercase tracking-wide text-cyan-200">
+              {category.title}
+            </h2>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              {category.skills.map((skill) => (
+                <span key={skill} className="terminal-chip">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
-    </div>
+    </SiteLayout>
   );
 };
 
