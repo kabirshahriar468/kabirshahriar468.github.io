@@ -16,12 +16,12 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-sm border-b border-slate-700">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-xl font-bold text-white">
+          <Link to="/" className="text-xl font-bold text-white tracking-tight hover:text-neutral-300 transition-colors">
             Shahriar Kabir
-          </div>
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
@@ -29,10 +29,10 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`transition-colors duration-200 ${
+                className={`text-sm font-medium tracking-wide uppercase transition-colors duration-200 ${
                   location.pathname === item.path
-                    ? 'text-blue-400 border-b-2 border-blue-400'
-                    : 'text-gray-300 hover:text-white'
+                    ? 'text-white border-b-2 border-white'
+                    : 'text-neutral-400 hover:text-white'
                 } pb-1`}
               >
                 {item.name}
@@ -43,7 +43,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden text-neutral-400 hover:text-white"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -53,16 +53,16 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4">
+          <div className="md:hidden pb-4 border-t border-neutral-800 pt-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`block py-2 transition-colors duration-200 ${
+                className={`block py-2 text-sm font-medium uppercase tracking-wide transition-colors duration-200 ${
                   location.pathname === item.path
-                    ? 'text-blue-400'
-                    : 'text-gray-300 hover:text-white'
+                    ? 'text-white'
+                    : 'text-neutral-400 hover:text-white'
                 }`}
               >
                 {item.name}

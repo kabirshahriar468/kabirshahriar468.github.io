@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  base: '/',
   plugins: [
     react(),
     mode === 'development' &&
@@ -20,3 +21,11 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
+// import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react'
+
+// export default defineConfig({
+//   plugins: [react()],
+//   base: '/',  // 👈 IMPORTANT
+// })

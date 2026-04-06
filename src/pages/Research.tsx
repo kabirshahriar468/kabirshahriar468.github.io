@@ -2,135 +2,183 @@
 import Navigation from '../components/Navigation';
 
 const Research = () => {
-  const researchAreas = [
-    {
-      title: 'Natural Language Processing',
-      description: 'Developing Bengali-first solutions for mathematical problem solving and text analysis',
-      icon: '🔤'
-    },
-    {
-      title: 'Software Automation & Testing',
-      description: 'Building intelligent frameworks that convert natural language into actionable test procedures',
-      icon: '🤖'
-    },
-    {
-      title: 'Autonomous Transportation Systems',
-      description: 'Researching pedestrian trajectory analysis and clustering algorithms for vehicle simulation',
-      icon: '🚗'
-    },
-    {
-      title: 'Bioinformatics & Computational Biology',
-      description: 'Applying computational methods to solve complex biological problems',
-      icon: '🧬'
-    }
+  const researchInterests = [
+    { label: 'Natural Language Processing', abbr: 'NLP' },
+    { label: 'Computer Vision', abbr: 'CV' },
+    { label: 'Machine Learning', abbr: 'ML' },
+    { label: 'Artificial Intelligence', abbr: 'AI' },
+    { label: 'AI for Health', abbr: null },
+    { label: 'Large Language Models', abbr: 'LLM' },
   ];
 
   const publications = [
     {
-      title: 'Autonomous Vehicle Simulation Models Using Knot-Based String Clustering',
-      venue: 'BUET CSE Fest 2024 - Poster Presentation',
-      date: 'April 2024',
-      status: 'Champion',
-      description: 'Research on pedestrian trajectory clustering that identified 31 distinct movement patterns, revealing that 42% of pedestrian paths deviate from straight-line motion.',
-      link: '#'
-    }
+      title:
+        'DualSwinFusionSeg: Multimodal Martian Landslide Segmentation via Dual Swin Transformer with Multi-Scale Fusion and UNet++',
+      authors: null,
+      venue: 'PBVS @ CVPR 2026',
+      venueNote: 'Perception Beyond the Visible Spectrum Workshop, IEEE/CVF CVPR',
+      year: '2026',
+      status: 'Accepted',
+      abstract:
+        'Proposes a multimodal segmentation architecture for Martian landslide detection that employs two parallel Swin Transformer V2 encoders on RGB and geophysical inputs with UNet++ decoding. Achieves 0.867 mIoU and 0.905 F1 on the MMLSv2 benchmark.',
+      tags: ['Computer Vision', 'Remote Sensing', 'Segmentation', 'Transformers'],
+      arxiv: 'https://arxiv.org/abs/2603.14132',
+      pdf: 'https://arxiv.org/pdf/2603.14132',
+    },
+    {
+      title:
+        'SpectraSentinel: Lightweight Dual-Stream Real-Time Drone Detection, Tracking and Payload Identification',
+      authors: null,
+      venue: 'IEEE VIP Cup 2025',
+      venueNote: 'IEEE Signal Processing Society Video & Image Processing Cup',
+      year: '2025',
+      status: 'Preprint',
+      abstract:
+        'A dual-stream drone monitoring framework deploying independent YOLOv11n detectors on parallel IR and RGB streams for real-time drone detection, tracking, and payload identification. Maintains high accuracy across noise, low-light, and motion-blur conditions.',
+      tags: ['Object Detection', 'Tracking', 'Multi-modal', 'YOLO'],
+      arxiv: 'https://arxiv.org/abs/2507.22650',
+      pdf: 'https://arxiv.org/pdf/2507.22650',
+    },
+    {
+      title:
+        'Bengali-Loop: Community Benchmarks for Long-Form Bangla ASR and Speaker Diarization',
+      authors: null,
+      venue: 'arXiv Preprint',
+      venueNote: 'Community benchmark for Bangla speech technology',
+      year: '2026',
+      status: 'Preprint',
+      abstract:
+        'Presents two community benchmarks: a long-form ASR corpus (158.6 hours, 792k words from 11 YouTube channels) and a speaker diarization corpus (22 hours, 5,744 annotated segments). Establishes baselines with Tugstugi (34.07% WER) and pyannote.audio (40.08% DER).',
+      tags: ['ASR', 'NLP', 'Speaker Diarization', 'Bangla'],
+      arxiv: 'https://arxiv.org/abs/2602.14291',
+      pdf: 'https://arxiv.org/pdf/2602.14291',
+    },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen bg-neutral-950">
       <Navigation />
-      
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+
+      <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-white mb-4">Research</h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              My research focuses on the intersection of artificial intelligence, software engineering, and computational biology,
-              with a particular emphasis on developing practical solutions to real-world problems.
+          <div className="text-center mb-14">
+            <h1 className="text-4xl font-bold text-white mb-3">Research</h1>
+            <p className="text-base text-neutral-400 max-w-2xl mx-auto">
+              Publications and ongoing work across computer vision,
+              natural language processing, and applied machine learning.
             </p>
           </div>
 
-          {/* Research Areas */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">Research Interests</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {researchAreas.map((area, index) => (
-                <div
-                  key={index}
-                  className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-all duration-300"
+          {/* ── Research Interests ── */}
+          <section className="mb-16">
+            <h2 className="text-2xl font-semibold text-white mb-5 flex items-center gap-2">
+              <span className="inline-block w-1 h-6 bg-neutral-500 rounded-full" />
+              Research Interests
+            </h2>
+            <div className="flex flex-wrap gap-2.5">
+              {researchInterests.map((r, i) => (
+                <span
+                  key={i}
+                  className="px-4 py-2 bg-neutral-900 border border-neutral-800 rounded-lg text-sm text-neutral-300 font-medium"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="text-3xl">{area.icon}</div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-3">
-                        {area.title}
-                      </h3>
-                      <p className="text-gray-300 leading-relaxed">
-                        {area.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  {r.label}
+                  {r.abbr && (
+                    <span className="ml-1.5 text-neutral-500">({r.abbr})</span>
+                  )}
+                </span>
               ))}
             </div>
-          </div>
+          </section>
 
-          {/* Publications & Presentations */}
-          <div>
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">Publications & Presentations</h2>
+          {/* ── Publications ── */}
+          <section>
+            <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
+              <span className="inline-block w-1 h-6 bg-neutral-500 rounded-full" />
+              Publications
+            </h2>
+
             <div className="space-y-6">
-              {publications.map((pub, index) => (
-                <div
-                  key={index}
-                  className="bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-all duration-300"
+              {publications.map((pub, i) => (
+                <article
+                  key={i}
+                  className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6 transition-all duration-300 hover:border-neutral-600 group"
                 >
-                  <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white mb-2">
-                        {pub.title}
-                      </h3>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-                        <span className="text-blue-400 font-medium">{pub.venue}</span>
-                        <span className="text-gray-400">•</span>
-                        <span className="text-gray-400">{pub.date}</span>
-                        {pub.status && (
-                          <>
-                            <span className="text-gray-400">•</span>
-                            <span className="px-3 py-1 bg-yellow-900/30 text-yellow-300 text-sm rounded-full">
-                              {pub.status}
-                            </span>
-                          </>
-                        )}
-                      </div>
-                    </div>
+                  {/* Title */}
+                  <h3 className="text-lg font-semibold text-white leading-snug mb-2">
+                    {pub.title}
+                  </h3>
+
+                  {/* Venue + Status */}
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="text-sm text-neutral-400 font-medium">
+                      {pub.venue}
+                    </span>
+                    <span className="text-neutral-600">·</span>
+                    <span className="text-sm text-neutral-500">{pub.year}</span>
+                    <span
+                      className={`ml-1 px-2.5 py-0.5 text-xs font-semibold rounded-full ${
+                        pub.status === 'Accepted'
+                          ? 'bg-emerald-900/30 text-emerald-400 ring-1 ring-emerald-600/30'
+                          : 'bg-neutral-800 text-neutral-400 ring-1 ring-neutral-700/40'
+                      }`}
+                    >
+                      {pub.status}
+                    </span>
                   </div>
-                  
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    {pub.description}
+
+                  {/* Venue detail */}
+                  <p className="text-xs text-neutral-500 mb-3 italic">
+                    {pub.venueNote}
                   </p>
-                  
-                  <button className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
-                    <span>View Research</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </button>
-                </div>
+
+                  {/* Abstract */}
+                  <p className="text-sm text-neutral-400 leading-relaxed mb-4">
+                    {pub.abstract}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {pub.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 bg-neutral-800 text-neutral-500 text-xs rounded border border-neutral-700/50"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={pub.arxiv}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      arXiv
+                    </a>
+                    <a
+                      href={pub.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm text-neutral-400 hover:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                      PDF
+                    </a>
+                  </div>
+                </article>
               ))}
             </div>
-          </div>
-
-          {/* Current Research */}
-          <div className="mt-16 text-center">
-            <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Current Research</h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                I am currently working on advancing natural language processing techniques for mathematical problem solving,
-                with a focus on developing robust solutions that can handle complex Bengali mathematical expressions and reasoning.
-              </p>
-            </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>

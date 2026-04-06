@@ -1,165 +1,100 @@
 
-import { useState } from 'react';
 import Navigation from '../components/Navigation';
-import { Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-  };
+  const contactChannels = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'kabirshahriar468@gmail.com',
+      href: 'mailto:kabirshahriar468@gmail.com',
+      description: 'Best for professional inquiries',
+    },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      value: '+880 1756 062263',
+      href: 'https://wa.me/+8801756062263',
+      description: 'Quick replies & casual chats',
+    },
+    {
+      icon: Linkedin,
+      label: 'LinkedIn',
+      value: 'Shahriar Kabir',
+      href: 'https://www.linkedin.com/in/shahriar-kabir-810509251/',
+      description: 'Connect professionally',
+    },
+    {
+      icon: Github,
+      label: 'GitHub',
+      value: 'kabirshahriar468',
+      href: 'https://github.com/kabirshahriar468',
+      description: 'Check out my projects & code',
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen bg-neutral-950">
       <Navigation />
-      
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
+
+      <div className="pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-white mb-4">Contact</h1>
-            <p className="text-xl text-gray-300">
-              I'm always open to discussing new opportunities, interesting projects, and potential collaborations.
-              Let's connect!
+          <div className="text-center mb-14">
+            <h1 className="text-4xl font-bold text-white mb-3">Contact</h1>
+            <p className="text-base text-neutral-400 max-w-xl mx-auto">
+              I'm always open to discussing new opportunities, interesting
+              projects, and potential collaborations. Feel free to reach out
+              through any of the channels below.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div>
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-8">
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  💬 Let's Connect
-                </h2>
-                
-                <p className="text-gray-300 mb-8 leading-relaxed">
-                  Whether you have a project in mind, want to collaborate on research, or just want to say hello, 
-                  I'd love to hear from you. Feel free to reach out through the form or directly via email!
-                </p>
-
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <Mail size={24} className="text-white" />
+          {/* Contact Cards */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {contactChannels.map((ch) => {
+              const Icon = ch.icon;
+              return (
+                <a
+                  key={ch.label}
+                  href={ch.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-neutral-900/80 border border-neutral-800 rounded-xl p-5 transition-all duration-300 hover:border-neutral-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 block"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-neutral-800 border border-neutral-700 rounded-lg flex items-center justify-center shrink-0 group-hover:border-neutral-500 transition-colors">
+                      <Icon size={18} className="text-neutral-400 group-hover:text-white transition-colors" />
                     </div>
-                    <div>
-                      <h3 className="text-white font-semibold">Email</h3>
-                      <p className="text-blue-400">2005107@cse.buet.ac.bd</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
-                      📍
-                    </div>
-                    <div>
-                      <h3 className="text-white font-semibold">Location</h3>
-                      <p className="text-gray-400">Titumir Hall, Polashi, BUET</p>
+                    <div className="min-w-0">
+                      <p className="text-xs text-neutral-500 uppercase tracking-wider font-medium mb-0.5">
+                        {ch.label}
+                      </p>
+                      <p className="text-white font-medium text-sm truncate group-hover:text-neutral-200 transition-colors">
+                        {ch.value}
+                      </p>
+                      <p className="text-xs text-neutral-500 mt-1">
+                        {ch.description}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </a>
+              );
+            })}
+          </div>
 
-            {/* Contact Form */}
-            <div>
-              <div className="bg-slate-800/30 border border-slate-700 rounded-lg p-8">
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  ✉️ Send Message
-                </h2>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Your Name"
-                        className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Your Email"
-                        className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-gray-300 font-medium mb-2">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      placeholder="Subject"
-                      className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-gray-300 font-medium mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Your Message"
-                      className="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2"
-                  >
-                    <span>Send Message</span>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                  </button>
-                </form>
-              </div>
+          {/* Location */}
+          <div className="mt-10 text-center">
+            <div className="bg-neutral-900/80 border border-neutral-800 rounded-xl p-6">
+              <p className="text-sm text-neutral-500 uppercase tracking-wider font-medium mb-1">
+                Location
+              </p>
+              <p className="text-white font-medium">
+                Titumir Hall, Polashi, BUET
+              </p>
+              <p className="text-neutral-500 text-sm mt-0.5">
+                Dhaka, Bangladesh
+              </p>
             </div>
           </div>
         </div>
